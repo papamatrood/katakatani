@@ -26,7 +26,7 @@ if (!empty($_POST)) {
         header("Location: " . $router->url('login') . '?alert=1');
         exit;
     }else {
-        if (password_verify($_POST['username'], $u->getPassword()) === false) {
+        if (password_verify($_POST['password'], $u->getPassword()) === false) {
             $errors['username'] = 'Identifiant ou mot de passe incorrect !';
             header("Location: " . $router->url('login') . '?alert=1');
             exit;
