@@ -30,9 +30,9 @@ for ($i=0; $i <3; $i++) {
 }
 
 for ($i=0; $i <3; $i++) { 
+    $motif = $i < 2 ? $i + 1 : 1;
     $date = $faker->date() . ' ' . $faker->time();
-    $motif = $faker->text(30);
-    $pdo->exec("INSERT INTO comptabilite SET motif = '{$motif}', date_at = '{$date}', depense = NULL, recette = '15000', details = NULL, katakatani_id = '{$katakatani_ids[$i]}'");
+    $pdo->exec("INSERT INTO comptabilite SET motif = '{$motif}', date_at = '{$date}', montant = '15000', details = NULL, katakatani_id = '{$katakatani_ids[$i]}'");
 }
 
 $username = 'admin';

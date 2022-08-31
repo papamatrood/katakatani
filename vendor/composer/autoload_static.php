@@ -12,6 +12,7 @@ class ComposerStaticInitd8aba98fa9cf78df6a56ae14b0b32095
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '5d80ba682afba25d348d62676196765b' => __DIR__ . '/../..' . '/src/functions.php',
+        'd0a3c70c48648e79ee179821ff47ac30' => __DIR__ . '/../..' . '/src/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (

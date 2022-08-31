@@ -10,7 +10,7 @@ class Form {
     private $data;
 
 
-    public function __construct($errors, $data)
+    public function __construct($errors = [], $data = null)
     {
         $this->errors = $errors;
         $this->data = $data;
@@ -19,7 +19,7 @@ class Form {
     public function input(string $name, string $label) : ?string
     {
         $value = $this->getValue($name);
-        $type = $name === 'password' ? 'password' : 'text';
+        $type = $this->getInputType($name);
         $class = isset($this->errors[$name]) ? "form-control is-invalid" : "form-control";
         return <<<HTML
             <div class="mb-3">
@@ -30,17 +30,17 @@ class Form {
         HTML;
     }
 
-    public function select(string $name, string $label, array $katakatanis = []) : ?string
+    public function select(string $name, string $label, array $contenus = []) : ?string
     {
         $options = [];
         $selected = null;
         $value = $this->getValue($name);
-        foreach ($katakatanis as $id => $v) {
-            $selected = $value == $id  ? "selected" : ''; 
+        foreach ($contenus as $id => $v) {
+            $selected = ($value == $id || $value == $v)  ? "selected" : ''; 
             $options[] = "<option value=\"$id\" $selected>$v</option>"; 
         }
         $options = implode('', $options);
-        $class = isset($this->errors[$name]) ? "form-control is-invalid" : "form-control";
+        $class = isset($this->errors[$name]) ? "form-control form-select is-invalid" : "form-control form-select";
         return <<<HTML
             <div class="mb-3">
                 <label for="id{$name}" class="form-label">{$label}</label>
@@ -84,6 +84,15 @@ class Form {
             HTML;
         }
         return null;
+    }
+
+    private function getInputType(string $name) : string
+    {
+        if (strpos($name, '_at') !== false) return 'date';
+        
+        if ($name === 'password') return 'password';
+       
+        return 'text';
     }
 
 }

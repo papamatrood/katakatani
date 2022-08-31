@@ -9,4 +9,10 @@ final class TableComptabilite extends Table {
 
     protected $class = Comptabilite::class;
 
+
+    public function filtre() 
+    {
+        
+    }
+
 }

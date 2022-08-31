@@ -11,4 +11,5 @@ return array(
     '6e3fae29631ef280660b3cdad06f25a8' => $vendorDir . '/symfony/deprecation-contracts/function.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     '5d80ba682afba25d348d62676196765b' => $baseDir . '/src/functions.php',
+    'd0a3c70c48648e79ee179821ff47ac30' => $baseDir . '/src/config.php',
 );

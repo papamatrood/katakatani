@@ -8,7 +8,7 @@ Auth::check();
 
 $pdo = Connection::getPDO();
 
-$query = $pdo->query("SELECT * FROM katakatani ORDER BY acheter_at DESC LIMIT 12");
+$query = $pdo->query("SELECT * FROM katakatani ORDER BY id DESC LIMIT 12");
 
 /**
  * @var Katakatani[]
@@ -41,6 +41,7 @@ $katakatanis = $query->fetchAll(PDO::FETCH_CLASS, Katakatani::class);
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
+            <th>N°</th>
             <th>Matricle</th>
             <th>Prix d'achat</th>
             <th>Date d'achat</th>
@@ -52,6 +53,7 @@ $katakatanis = $query->fetchAll(PDO::FETCH_CLASS, Katakatani::class);
     <tbody class="table-group-divider">
         <?php foreach($katakatanis as $katakatani) : ?>
             <tr>
+                <td>#<?= $katakatani->getId() ?></td>
                 <td><?= $katakatani->getMatricule() ?></td>
                 <td><?= $katakatani->Prix() ?></td>
                 <td><?= $katakatani->getAcheterAt()->format('Y-m-d') ?></td>

@@ -11,9 +11,7 @@ class Comptabilite
 
     private $date_at;
 
-    private $depense;
-
-    private $recette;
+    private $montant;
 
     private $details;
 
@@ -49,26 +47,14 @@ class Comptabilite
         return $this;
     }
 
-    public function getDepense() : ?string
+    public function getMontant() : ?int
     {
-        return $this->depense;
+        return $this->montant;
     }
 
-    public function setDepense(string $depense) : self
+    public function setMontant(int $montant) : self
     {
-        $this->depense = $depense;
-
-        return $this;
-    }
-
-    public function getRecette() : ?string
-    {
-        return $this->recette;
-    }
-
-    public function setRecette(string $recette) : self
-    {
-        $this->recette = $recette;
+        $this->montant = $montant;
 
         return $this;
     }

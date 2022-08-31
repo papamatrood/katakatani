@@ -27,10 +27,9 @@ CREATE TABLE chauffeur (
 
 CREATE TABLE comptabilite (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    motif VARCHAR(255) NOT NULL,
+    motif ENUM('Dépense', 'Recette') NOT NULL,
+    montant INT NOT NULL,
     date_at DATETIME NOT NULL,
-    depense INT,
-    recette INT,
     details TEXT(650000),
     katakatani_id INT UNSIGNED,
     PRIMARY KEY(id),

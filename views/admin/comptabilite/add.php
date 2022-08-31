@@ -21,8 +21,7 @@ $katakatanis = (new TableChauffeur())->allKatakataniIdName();
 if (!empty($_POST)) {
     $comptabilite
         ->setMotif($_POST['motif'])
-        ->setDepense($_POST['depense'])
-        ->setRecette($_POST['recette'])
+        ->setMontant($_POST['montant'])
         ->setDetails($_POST['details'])
         ->setDateAt((int) $_POST['date_at'])
         ->setKatakataniId($_POST['katakatani_id']);
@@ -41,7 +40,6 @@ $form = new Form($errors, $comptabilite);
 
 <br>
 
-<h3>Ajout comptabilité</h3>
 <?php if (!empty($errors)) : ?>
     <div class="alert alert-danger">
         Veuillez corriger les erreurs !!!
@@ -50,17 +48,19 @@ $form = new Form($errors, $comptabilite);
 <br>
 
 <form method="post">
-    <div class="row">
-        <div class="col">
-            <?= $form->input('motif', 'Motif') ?>
-            <?= $form->input('depense', 'Dépense') ?>
-            <?= $form->input('recette', 'Recette') ?>
+    <fieldset class="border rounded-3 p-3">
+        <legend class="float-none w-auto px-3">Ajout comptabilité</legend>
+        <div class="row">
+            <div class="col">
+                <?= $form->select('motif', 'Motif', MOTIFS) ?>
+                <?= $form->textarea('details', 'Détails') ?>
+            </div>
+            <div class="col">
+                <?= $form->input('montant', 'Montant') ?>
+                <?= $form->select('katakatani_id', 'Katakatani N°', $katakatanis) ?>
+                <?= $form->input('date_at', 'Date') ?>
+            </div>
         </div>
-        <div class="col">
-            <?= $form->select('katakatani_id', 'Katakatani N°', $katakatanis) ?>
-            <?= $form->input('date_at', 'Date') ?>
-            <?= $form->textarea('details', 'Détails') ?>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </fieldset>
 </form>

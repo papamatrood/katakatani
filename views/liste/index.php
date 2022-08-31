@@ -19,12 +19,10 @@ $liste = $query->fetchAll(PDO::FETCH_OBJ);
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
-            <th>Matricle</th>
             <th>Prénom</th>
             <th>Nom</th>
             <th>Motif</th>
-            <th>Dépense</th>
-            <th>Recette</th>
+            <th>Montant</th>
             <th>Détail</th>
             <th>Date</th>
         </tr>
@@ -32,12 +30,10 @@ $liste = $query->fetchAll(PDO::FETCH_OBJ);
     <tbody class="table-group-divider">
         <?php foreach($liste as $contenu) : ?>
             <tr>
-                <td><?= $contenu->matricule ?></td>
                 <td><?= $contenu->prenom ?></td>
                 <td><?= $contenu->nom ?></td>
                 <td><?= $contenu->motif ?></td>
-                <td><?= $contenu->depense ?></td>
-                <td><?= $contenu->recette ?></td>
+                <td><?= number_format($contenu->montant, '0', '', ' ') ?> FCFA</td>
                 <td><?= $contenu->details ?></td>
                 <td><?= (new DateTime($contenu->date_at))->format('Y-m-d') ?></td>
             </tr>

@@ -22,8 +22,7 @@ $katakatanis = (new TableChauffeur())->allKatakataniIdName();
 if (!empty($_POST)) {
     $comptabilite
         ->setMotif($_POST['motif'])
-        ->setDepense($_POST['depense'])
-        ->setRecette($_POST['recette'])
+        ->setMontant($_POST['montant'])
         ->setDetails($_POST['details'])
         ->setDateAt((int) $_POST['date_at'])
         ->setKatakataniId($_POST['katakatani_id']);
@@ -43,15 +42,14 @@ $form = new Form($errors, $comptabilite);
 <form method="post">
     <div class="row">
         <div class="col">
-            <?= $form->input('motif', 'Motif') ?>
-            <?= $form->input('depense', 'Dépense') ?>
-            <?= $form->input('recette', 'Recette') ?>
-        </div>
-        <div class="col">
-            <?= $form->select('katakatani_id', 'Katakatani N°', $katakatanis) ?>
-            <?= $form->input('date_at', 'Date') ?>
+            <?= $form->select('motif', 'Motif', MOTIFS) ?>
             <?= $form->textarea('details', 'Détails') ?>
         </div>
+        <div class="col">
+            <?= $form->input('montant', 'Montant') ?>
+            <?= $form->select('katakatani_id', 'Katakatani N°', $katakatanis) ?>
+            <?= $form->input('date_at', 'Date') ?>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="submit" class="btn btn-primary">Modifier</button>
 </form>
