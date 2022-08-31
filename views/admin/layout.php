@@ -24,6 +24,7 @@
                      <?= Nav::item($router->url('home_katakatani'), "Katakatanis") ?>
                      <?= Nav::item($router->url('home_chauffeur'), "Chauffeurs") ?>
                      <?= Nav::item($router->url('home_comptabilite'), "Comptabilité") ?>
+                     <?= Nav::item($router->url('bilan_comptabilite'), "Bilan") ?>
                      <?= Nav::item($router->url('logout'), "Se déconnecter") ?>
                      <!-- <li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>
