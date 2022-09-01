@@ -45,7 +45,7 @@ class Router {
 
     public function run() : void
     {
-        $view = $this->router->match()['target'];
+        $view = $this->router->match()['target'] ?? '404';
         $params = $this->router->match()['params'];
         $router = $this;
         ob_start();
