@@ -9,7 +9,9 @@ Auth::check();
 
 $pdo = Connection::getPDO();
 
-$query = "SELECT c.*, ch.prenom, ch.nom FROM comptabilite c JOIN chauffeur ch ON c.katakatani_id = ch.katakatani_id";
+$query = "SELECT c.*, ch.id, ch.prenom, ch.nom, SUM(montant) AS resultat
+FROM comptabilite c 
+JOIN chauffeur ch ON c.katakatani_id = ch.katakatani_id";
 
 $params = [];
 $month = null;
@@ -31,14 +33,9 @@ if (!empty($_POST)) {
         $query .= " AND c.katakatani_id = :katakatani_id";
         $params['katakatani_id'] = (int) $chauff;
     }
-
-    if (!is_null($act)) {
-        $query .= " AND c.motif = :motif";
-        $params['motif'] = $act;
-    }
 }
 
-$query .= " ORDER BY date_at DESC LIMIT 12";
+$query .= " GROUP BY ch.id, motif LIMIT 12";
 
 $prepare = $pdo->prepare($query);
 $prepare->execute($params);
@@ -54,15 +51,25 @@ $chauffeurs = $pdo->query("SELECT katakatani_id, prenom, nom FROM chauffeur")->f
  */
 $comptabilites = $prepare->fetchAll(PDO::FETCH_CLASS, Comptabilite::class);
 
+$donnees = [];
+$depenses = 0;
+$recettes = 0;
+
+foreach ($comptabilites as $value) {
+    $montant = $value->resultat;
+    $donnees[$value->getKatakataniId()]['katakataniId'] = $value->getKatakataniId();
+    $donnees[$value->getKatakataniId()]['nomComplet'] = $value->getNomComplet();
+    if ($value->getMotif() == 'Recette') {
+        $donnees[$value->getKatakataniId()]['recette'] = $montant;
+    } elseif ($value->getMotif() == 'Dépense') {
+        $donnees[$value->getKatakataniId()]['depense'] = $montant;
+    }
+    $donnees[$value->getKatakataniId()]['date'] = MONTHS[$value->getDateAt()->format('m')] . ' ' . $value->getDateAt()->format('Y');
+}
 ?>
 
 <br>
 <h3>Liste des comptabilites</h3>
-<?php if (isset($_GET['created'])) : ?>
-    <div class="alert alert-success">
-        Un nouveau comptabilite a été ajouté avec succès !
-    </div>
-<?php endif; ?>
 <br>
 <form method="post">
     <fieldset class="border rounded-3 p-3">
@@ -70,16 +77,6 @@ $comptabilites = $prepare->fetchAll(PDO::FETCH_CLASS, Comptabilite::class);
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Action</span>
-                    <select name="motif" class="form-select form-select-sm">
-                        <option value="" selected disabled hidden>Sélectionner une action</option>
-                        <?php foreach (MOTIFS as $key => $action) : ?>
-                            <?php $selected = $action !== $act ? null : 'selected' ?>
-                            <option value="<?= $action ?>" <?= $selected ?>>
-                                <?= $action ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
                     <span class="input-group-text">Chauffeur</span>
                     <select name="chauffeur" class="form-select form-select-sm">
                         <option value="" selected disabled hidden>Sélectionner un chauffeur</option>
@@ -119,55 +116,54 @@ $comptabilites = $prepare->fetchAll(PDO::FETCH_CLASS, Comptabilite::class);
         </div>
     </fieldset>
 </form>
-<?php if (isset($_GET['edited'])) : ?>
-    <div class="alert alert-success">
-        Modification effectuée avec succès !
-    </div>
-<?php endif; ?>
-<br>
-<?php if (isset($_GET['delete'])) : ?>
-    <div class="alert alert-success">
-        Suppression effectuée avec succès !
-    </div>
-<?php endif; ?>
 <br>
 
 <table class="table table-striped table-hover table-bordered" style="width:100%">
-    <thead>
+    <thead class="table-dark">
         <tr>
-            <th style="width:10%">Katakani N°#</th>
+            <th style="width:7%">Katakani N°#</th>
             <th style="width:15%">Prénom & Nom</th>
-            <th style="width:8%">Motif</th>
-            <th style="width:10%">Montant</th>
-            <th style="width:30%">Détails</th>
+            <th style="width:11%">Recette</th>
+            <th style="width:11%">Dépense</th>
+            <th style="width:11%">Resultat</th>
             <th style="width:10%">Date</th>
-            <th style="width:17%">
-                <a href="<?= $router->url('add_comptabilite') ?>" class="btn btn-primary">Ajouter</a>
-            </th>
         </tr>
     </thead>
-    <tbody class="table-group-divider">
-        <?php if (!empty($comptabilites)) : ?>
-            <?php foreach ($comptabilites as $comptabilite) : ?>
+    <?php if (!empty($comptabilites)) : ?>
+        <tbody class="table-group-divider">
+            <?php
+            foreach ($donnees as $donnee) :
+                $recette = (int) ($donnee['recette'] ?? '0');
+                $depense = (int) ($donnee['depense'] ?? '0');
+                $resultat = $recette - $depense;
+
+                $depenses += $depense;
+                $recettes += $recette;
+            ?>
                 <tr>
-                    <td>#<?= $comptabilite->getKatakataniId() ?></td>
-                    <td><?= $comptabilite->getNomComplet() ?></td>
-                    <td><?= $comptabilite->getMotif() ?></td>
-                    <td><?= number_format($comptabilite->getMontant(), '0', '', ' ') ?> FCFA</td>
-                    <td><?= nl2br(htmlentities($comptabilite->getDetails())) ?></td>
-                    <td><?= $comptabilite->getDateAt()->format('Y-m-d') ?></td>
-                    <td>
-                        <a href="<?= $router->url('edit_comptabilite', ['id' => $comptabilite->getId()]) ?>" class="btn btn-primary">Éditer</a>
-                        <form action="<?= $router->url('delete_comptabilite', ['id' => $comptabilite->getId()]) ?>" method="post" onsubmit="return confirm('Êtes-vous sûr de la suppression ?')" style="display: inline-block;">
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                        </form>
-                    </td>
+                    <td>#<?= $donnee['katakataniId'] ?></td>
+                    <td><?= $donnee['nomComplet'] ?></td>
+                    <td><?= number_format($recette, '0', '', ' ') . ' FCFA' ?></td>
+                    <td><?= number_format($depense, '0', '', ' ') . ' FCFA' ?></td>
+                    <td><?= number_format($resultat, '0', '', ' ') . ' FCFA' ?></td>
+                    <td><?= $donnee['date'] ?></td>
                 </tr>
             <?php endforeach; ?>
-        <?php else : ?>
+        </tbody>
+        <tfoot class="<?php if(($recettes - $depenses) <= 0): ?>table-danger<?php else : ?>table-success<?php endif; ?>">
             <tr>
-                <td colspan="7">Aucun enregistrement n' été trouvé</td>
+                <th colspan="2">Bilan : </th>
+                <th><?= number_format($recettes, '0', '', ' ') . ' FCFA' ?></th>
+                <th><?= number_format($depenses, '0', '', ' ') . ' FCFA' ?></th>
+                <th><?= number_format($recettes - $depenses, '0', '', ' ') . ' FCFA' ?></th>
+                <th><?= $donnee['date'] ?></th>
             </tr>
-        <?php endif; ?>
-    </tbody>
+        </tfoot>
+    <?php else : ?>
+        </tbody class="table-group-divider">
+        <tr>
+            <td colspan="6">Aucun enregistrement n' été trouvé</td>
+        </tr>
+        </tbody>
+    <?php endif; ?>
 </table>

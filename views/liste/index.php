@@ -19,8 +19,7 @@ $liste = $query->fetchAll(PDO::FETCH_OBJ);
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
+            <th>Prénom & Nom</th>
             <th>Motif</th>
             <th>Montant</th>
             <th>Détail</th>
@@ -30,8 +29,7 @@ $liste = $query->fetchAll(PDO::FETCH_OBJ);
     <tbody class="table-group-divider">
         <?php foreach($liste as $contenu) : ?>
             <tr>
-                <td><?= $contenu->prenom ?></td>
-                <td><?= $contenu->nom ?></td>
+                <td><?= $contenu->prenom . ' ' . $contenu->nom?></td>
                 <td><?= $contenu->motif ?></td>
                 <td><?= number_format($contenu->montant, '0', '', ' ') ?> FCFA</td>
                 <td><?= $contenu->details ?></td>
