@@ -7,5 +7,5 @@ $_SESSION = [];
 
 session_destroy();
 
-header("Location: " . $router->url('home'));
+header("Location: " . $router->url('login'));
 exit();

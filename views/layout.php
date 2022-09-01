@@ -21,13 +21,17 @@ use App\HTML\Nav;
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <?= Nav::item($router->url('home'), "Accueil") ?>
                     <?php if (session_status() === PHP_SESSION_NONE) : session_start() ?>
-                        <?php if (!isset($_SESSION['login'])) :  ?>
-                            <?= Nav::item($router->url('login'), "Se connecter") ?>
-                        <?php else : ?>
-                            <?= Nav::item($router->url('logout'), "Se déconnecter") ?>
-                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if (empty($_SESSION['login'])) :  ?>
+                        <?= Nav::item($router->url('login'), "Se connecter") ?>
+                    <?php else : ?>
+                        <?= Nav::item($router->url('home'), "Accueil") ?>
+                        <?= Nav::item($router->url('home_katakatani'), "Katakatanis") ?>
+                        <?= Nav::item($router->url('home_chauffeur'), "Chauffeurs") ?>
+                        <?= Nav::item($router->url('home_comptabilite'), "Comptabilité") ?>
+                        <?= Nav::item($router->url('bilan_comptabilite'), "Bilan") ?>
+                        <?= Nav::item($router->url('logout'), "Se déconnecter") ?>
                     <?php endif; ?>
                     <!-- <li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>

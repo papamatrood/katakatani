@@ -46,18 +46,16 @@ class Router {
     public function run() : void
     {
         $view = $this->router->match()['target'];
-        $layout = strpos($view,'admin/') === false ? 'layout' : 'admin/layout';
         $params = $this->router->match()['params'];
         $router = $this;
         ob_start();
         try {
             require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         } catch (\Exception $e) {
-            $layout = 'layout';
             echo "<h3 class=\"alert alert-warning\">{$e->getMessage()}</h3>";
         }
         $content = ob_get_clean();
-        require $this->viewPath . DIRECTORY_SEPARATOR . $layout . '.php';
+        require $this->viewPath . DIRECTORY_SEPARATOR . 'layout.php';
     }
 
 }

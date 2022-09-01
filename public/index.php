@@ -13,9 +13,9 @@ define('VIEWPATH', '../views');
 $router = new Router(VIEWPATH);
 
 $router
-    ->get('/', 'liste/index', 'home')
-    ->match('/login', 'security/login', 'login')
+    ->match('/', 'security/login', 'login')
     ->get('/logout', 'security/logout', 'logout')
+    ->get('/admin', 'admin/liste/index', 'home')
     ->get('/admin/katakatani/', 'admin/katakatani/index', 'home_katakatani')
     ->match('/admin/katakatani/add', 'admin/katakatani/add', 'add_katakatani')
     ->match('/admin/katakatani/edit/[i:id]', 'admin/katakatani/edit', 'edit_katakatani')

@@ -32,7 +32,7 @@ if (!empty($_POST)) {
             exit;
         }else {
             $_SESSION['login'] = 1;
-            header("Location: " . $router->url('home_katakatani'));
+            header("Location: " . $router->url('home'));
             exit();
         }
     }
