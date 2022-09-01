@@ -31,6 +31,7 @@ use App\HTML\Nav;
                         <?= Nav::item($router->url('home_chauffeur'), "Chauffeurs") ?>
                         <?= Nav::item($router->url('home_comptabilite'), "Comptabilité") ?>
                         <?= Nav::item($router->url('bilan_comptabilite'), "Bilan") ?>
+                        <?= Nav::item($router->url('bilan_annuel_comptabilite'), "Bilan Annuel") ?>
                         <?= Nav::item($router->url('logout'), "Se déconnecter") ?>
                     <?php endif; ?>
                     <!-- <li class="nav-item">

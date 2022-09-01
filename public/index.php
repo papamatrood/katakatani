@@ -26,6 +26,7 @@ $router
     ->match('/admin/chauffeur/delete/[i:id]', 'admin/chauffeur/delete', 'delete_chauffeur')
     ->match('/admin/comptabilite/', 'admin/comptabilite/index', 'home_comptabilite')
     ->match('/admin/comptabilite/bilan', 'admin/comptabilite/bilan', 'bilan_comptabilite')
+    ->match('/admin/comptabilite/bilan/annuel', 'admin/comptabilite/bilan_annuel', 'bilan_annuel_comptabilite')
     ->match('/admin/comptabilite/add', 'admin/comptabilite/add', 'add_comptabilite')
     ->match('/admin/comptabilite/edit/[i:id]', 'admin/comptabilite/edit', 'edit_comptabilite')
     ->match('/admin/comptabilite/delete/[i:id]', 'admin/comptabilite/delete', 'delete_comptabilite')
