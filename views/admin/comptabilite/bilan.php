@@ -14,20 +14,19 @@ FROM comptabilite c
 JOIN chauffeur ch ON c.katakatani_id = ch.katakatani_id";
 
 $params = [];
-$month = null;
-$year = null;
+
 $chauff = null;
 $act = null;
 
-if (!empty($_POST)) {
-    $month = $_POST['mois'];
-    $year = $_POST['annee'];
-    $chauff = $_POST['chauffeur'] ?? null;
-    $act = $_POST['motif'] ?? null;
-    $date_at = $year . '-' . $month;
+$month = $_POST['mois'] ?? date('m');
+$year = $_POST['annee'] ?? date('Y');
+$date_at = $year . '-' . $month;
 
-    $query .= " WHERE date_at LIKE :date_at";
-    $params['date_at'] = '%' . $date_at . '%';
+$query .= " WHERE date_at LIKE :date_at";
+$params['date_at'] = '%' . $date_at . '%';
+
+if (!empty($_POST)) {
+    $chauff = $_POST['chauffeur'] ?? null;
 
     if (!is_null($chauff)) {
         $query .= " AND c.katakatani_id = :katakatani_id";
@@ -35,7 +34,7 @@ if (!empty($_POST)) {
     }
 }
 
-$query .= " GROUP BY ch.id, motif LIMIT 12";
+$query .= " GROUP BY ch.id, motif";
 
 $prepare = $pdo->prepare($query);
 $prepare->execute($params);
@@ -92,7 +91,7 @@ foreach ($comptabilites as $value) {
             <div class="col">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Date</span>
-                    <select name="mois" class="form-select form-select-sm" required>
+                    <select name="mois" class="form-select form-select-sm">
                         <option value="" selected disabled hidden>Sélectionner un mois</option>
                         <?php foreach (MONTHS as $numero => $mois) : ?>
                             <?php $selected = $numero !== $month ? null : 'selected' ?>
@@ -101,7 +100,7 @@ foreach ($comptabilites as $value) {
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <select name="annee" class="form-select form-select-sm" required>
+                    <select name="annee" class="form-select form-select-sm">
                         <option value="" selected disabled hidden>Sélectionner une année</option>
                         <?php foreach (YEARS as $annee) : ?>
                             <?php $selected = $annee !== (int) $year ? null : 'selected' ?>
@@ -150,7 +149,7 @@ foreach ($comptabilites as $value) {
                 </tr>
             <?php endforeach; ?>
         </tbody>
-        <tfoot class="<?php if(($recettes - $depenses) <= 0): ?>table-danger<?php else : ?>table-success<?php endif; ?>">
+        <tfoot class="<?php if (($recettes - $depenses) <= 0) : ?>table-danger<?php else : ?>table-success<?php endif; ?>">
             <tr>
                 <th colspan="2">Bilan : </th>
                 <th><?= number_format($recettes, '0', '', ' ') . ' FCFA' ?></th>
