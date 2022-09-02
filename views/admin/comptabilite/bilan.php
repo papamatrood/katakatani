@@ -131,15 +131,21 @@ foreach ($comptabilites as $value) {
     <?php if (!empty($comptabilites)) : ?>
         <tbody class="table-group-divider">
             <?php
+            $class = null;
             foreach ($donnees as $donnee) :
                 $recette = (int) ($donnee['recette'] ?? '0');
                 $depense = (int) ($donnee['depense'] ?? '0');
                 $resultat = $recette - $depense;
+                if ($resultat > 0) {
+                    $class = 'table-success';
+                } elseif ($resultat < 0) {
+                    $class = 'table-danger';
+                }
 
                 $depenses += $depense;
                 $recettes += $recette;
             ?>
-                <tr>
+                <tr class="<?= $class ?>">
                     <td>#<?= $donnee['katakataniId'] ?></td>
                     <td><?= $donnee['nomComplet'] ?></td>
                     <td><?= number_format($recette, '0', '', ' ') . ' FCFA' ?></td>

@@ -10,6 +10,17 @@ $whoops->register();
 
 define('VIEWPATH', '../views');
 
+if (isset($_GET['page']) && ($_GET['page'] === '1')) {
+    $query = explode('?', $_SERVER['REQUEST_URI'])[0];
+    $get = $_GET;
+    unset($get['page']);
+    $get = http_build_query($get);
+    if(!empty($get)) $query .= '?' . $get;
+    http_response_code(301);
+    header("Location: " . $query);
+    exit();
+}
+
 $router = new Router(VIEWPATH);
 
 $router

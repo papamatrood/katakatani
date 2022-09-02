@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 31 août 2022 à 17:32
+-- Généré le : ven. 02 sep. 2022 à 16:47
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -72,7 +72,11 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (2, 'Dépense', 9000, '2022-08-02 00:00:00', 'Réparation des lames', 2),
 (3, 'Dépense', 84800, '2022-08-26 00:00:00', '- Cylindre (il contient le piston et singman), \r\n- Bol, \r\n- Piston\r\n- Huile (1,5L)', 3),
 (4, 'Dépense', 4500, '2022-08-21 00:00:00', '- Réparation Singma (3 000 FCFA).\r\n- Frais de réparation (1 500 FCFA.', 2),
-(5, 'Recette', 10000, '2022-08-28 00:00:00', 'Il n\'a pas travaille le jeudi 25 et 26 août 2022 pour cause de réparation, c\'est pourquoi ce montant ', 3);
+(5, 'Recette', 10000, '2022-08-28 00:00:00', 'Il n\'a pas travaille le jeudi 25 et 26 août 2022 pour cause de réparation, c\'est pourquoi ce montant ', 3),
+(6, 'Dépense', 1500, '2022-08-26 00:00:00', 'Réparation de Pneu', 2),
+(7, 'Recette', 15000, '2022-08-28 00:00:00', NULL, 1),
+(8, 'Recette', 15000, '2022-08-28 00:00:00', NULL, 2),
+(9, 'Recette', 2500, '2022-09-01 00:00:00', 'Via Orange Money, ça reste 12500 FCFA', 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +167,7 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
