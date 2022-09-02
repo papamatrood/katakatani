@@ -53,7 +53,7 @@ $katakatanis = $query->fetchAll(PDO::FETCH_CLASS, Katakatani::class);
     <tbody class="table-group-divider">
         <?php foreach($katakatanis as $katakatani) : ?>
             <tr>
-                <td>#<?= $katakatani->getId() ?></td>
+                <td>#<?= $katakatani->getNumero() ?></td>
                 <td><?= $katakatani->getMatricule() ?></td>
                 <td><?= $katakatani->Prix() ?></td>
                 <td><?= $katakatani->getAcheterAt()->format('Y-m-d') ?></td>

@@ -44,3 +44,5 @@ CREATE TABLE users (
     roles VARCHAR(255),
     PRIMARY KEY(id)
 );
+
+ALTER TABLE katakatani ADD numero INT UNSIGNED;

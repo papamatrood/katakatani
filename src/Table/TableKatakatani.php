@@ -11,7 +11,7 @@ final class TableKatakatani extends Table {
 
 
 
-    public function allIds() : array
+    public function allIdsNumeros() : array
     {
         /**
          * @var Katakatani[]
@@ -19,7 +19,7 @@ final class TableKatakatani extends Table {
         $result = $this->all();
         $ids = [];
         foreach ($result as $value) {
-            $ids[$value->getId()] = $value->getId();
+            $ids[$value->getId()] = $value->getNumero();
         }
         return $ids;
     }

@@ -7,6 +7,8 @@ class Katakatani
 {
     private $id;
 
+    private $numero;
+
     private $matricule;
 
     private $acheter_at;
@@ -23,6 +25,18 @@ class Katakatani
     public function setId(int $id) : self
     {
         $this->id = $id;
+
+        return $this;
+    }
+    
+    public function getNumero() : ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(int $numero) : self
+    {
+        $this->id = $numero;
 
         return $this;
     }

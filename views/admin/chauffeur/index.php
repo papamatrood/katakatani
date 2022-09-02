@@ -9,7 +9,7 @@ Auth::check();
 $pdo = Connection::getPDO();
 
 $query = $pdo->query(
-    "SELECT c.*
+    "SELECT c.*, k.numero
     FROM chauffeur c
     JOIN katakatani k ON c.katakatani_id = k.id
     LIMIT 12");
@@ -60,7 +60,7 @@ $chauffeurs = $query->fetchAll(PDO::FETCH_CLASS, Chauffeur::class);
     <tbody class="table-group-divider">
         <?php foreach($chauffeurs as $chauffeur) : ?>
             <tr>
-                <td>#<?= $chauffeur->getKatakataniId() ?></td>
+                <td>#<?= $chauffeur->numero ?></td>
                 <td><?= $chauffeur->getPrenom() ?> <?= $chauffeur->getNom() ?></td>
                 <td><?= $chauffeur->getTelephone1() ?></td>
                 <td><?= $chauffeur->getTelephone2() ?></td>

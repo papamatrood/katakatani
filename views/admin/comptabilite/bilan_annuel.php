@@ -9,9 +9,10 @@ Auth::check();
 
 $pdo = Connection::getPDO();
 
-$query = "SELECT c.*, ch.id, ch.prenom, ch.nom, SUM(montant) AS resultat
+$query = "SELECT c.*, ch.id, ch.prenom, ch.nom, k.numero, SUM(montant) AS resultat
 FROM comptabilite c 
 JOIN chauffeur ch ON c.katakatani_id = ch.katakatani_id
+JOIN katakatani k ON k.id = c.katakatani_id
 WHERE date_at LIKE :date_at";
 
 $params = [];
@@ -27,7 +28,7 @@ $date_at = $year;
 if (!empty($_POST)) {
     $month = $_POST['mois'] ?? null;
 
-    if (!is_null($month)) {    
+    if (!is_null($month)) {
         $date_at .= '-' . $month;
     }
 
@@ -63,7 +64,7 @@ $recettes = 0;
 
 foreach ($comptabilites as $value) {
     $montant = $value->resultat;
-    $donnees[$value->getKatakataniId()]['katakataniId'] = $value->getKatakataniId();
+    $donnees[$value->getKatakataniId()]['katakataniId'] = $value->numero;
     $donnees[$value->getKatakataniId()]['nomComplet'] = $value->getNomComplet();
     if ($value->getMotif() == 'Recette') {
         $donnees[$value->getKatakataniId()]['recette'] = $montant;
@@ -139,15 +140,21 @@ foreach ($comptabilites as $value) {
     <?php if (!empty($comptabilites)) : ?>
         <tbody class="table-group-divider">
             <?php
+            $class = null;
             foreach ($donnees as $donnee) :
                 $recette = (int) ($donnee['recette'] ?? '0');
                 $depense = (int) ($donnee['depense'] ?? '0');
                 $resultat = $recette - $depense;
+                if ($resultat > 0) {
+                    $class = 'table-success';
+                } elseif ($resultat < 0) {
+                    $class = 'table-danger';
+                }
 
                 $depenses += $depense;
                 $recettes += $recette;
             ?>
-                <tr>
+                <tr class="<?= $class ?>">
                     <td>#<?= $donnee['katakataniId'] ?></td>
                     <td><?= $donnee['nomComplet'] ?></td>
                     <td><?= number_format($recette, '0', '', ' ') . ' FCFA' ?></td>

@@ -19,7 +19,7 @@ final class TableChauffeur extends Table {
         $all = $this->all();
         $result = [];
         foreach ($all as $value) {
-            $result[$value->getKatakataniId()] = $value->getPrenom() . ' (#' . $value->getKatakataniId() . ')';
+            $result[$value->getKatakataniId()] = $value->getPrenom();
         }
         return $result;
     }

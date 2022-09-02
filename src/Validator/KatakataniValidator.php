@@ -9,6 +9,7 @@ final class KatakataniValidator extends Validator {
         parent::__construct($data);
         $this->validator->rule('lengthMin', 'prix_achat', 5);
         $this->validator->rule('lengthMin', 'matricule', 5);
+        $this->validator->rule('required', 'numero');
     }
 
 }

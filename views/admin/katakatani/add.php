@@ -17,6 +17,7 @@ $katakatani = new Katakatani();
 
 if (!empty($_POST)) {
     $katakatani
+        ->setNumero($_POST['numero'])
         ->setMatricule($_POST['matricule'])
         ->setPrixAchat((int) $_POST['prix_achat'])
         ->setAcheterAt($_POST['acheter_at']);
@@ -43,6 +44,7 @@ $form = new Form($errors, $katakatani);
 <br>
 
 <form method="post">
+    <?= $form->input('numero', 'Numero') ?>
     <?= $form->input('matricule', 'Matricule') ?>
     <?= $form->input('prix_achat', 'Prix d\'achat') ?>
     <?= $form->input('acheter_at', 'Date d\'achat') ?>

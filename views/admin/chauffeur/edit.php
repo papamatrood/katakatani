@@ -17,7 +17,7 @@ $errors = [];
  */
 $chauffeur = (new TableChauffeur())->find($id);
 
-$katakatanis = (new TableKatakatani())->allIds();
+$katakatanis = (new TableKatakatani())->allIdsNumeros();
 
 if (!empty($_POST)) {
     $chauffeur
