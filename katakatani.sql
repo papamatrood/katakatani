@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 02 sep. 2022 à 16:47
+-- Généré le : lun. 05 sep. 2022 à 16:21
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -76,7 +76,13 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (6, 'Dépense', 1500, '2022-08-26 00:00:00', 'Réparation de Pneu', 2),
 (7, 'Recette', 15000, '2022-08-28 00:00:00', NULL, 1),
 (8, 'Recette', 15000, '2022-08-28 00:00:00', NULL, 2),
-(9, 'Recette', 2500, '2022-09-01 00:00:00', 'Via Orange Money, ça reste 12500 FCFA', 1);
+(9, 'Recette', 2500, '2022-09-01 00:00:00', 'Via Orange Money, ça reste 12500 FCFA', 1),
+(10, 'Recette', 2500, '2022-09-03 00:00:00', NULL, 1),
+(11, 'Recette', 2500, '2022-09-04 00:00:00', 'Il a donné 2 500 FCFA à Kodio, et il avait envoyé 2 fois 2 500 FCFA (5 000 FCFA) via Orange Money, il lui reste à payer maintenant 7 500 FCFA', 1),
+(12, 'Recette', 15000, '2022-09-04 00:00:00', NULL, 3),
+(13, 'Recette', 15000, '2022-09-04 00:00:00', NULL, 2),
+(14, 'Dépense', 2000, '2022-09-02 00:00:00', 'Soudure de Tissu (Barre stabilisatrice)', 3),
+(15, 'Dépense', 2500, '2022-09-02 00:00:00', 'Frais de réparation de Sékouba', 3);
 
 -- --------------------------------------------------------
 
@@ -88,17 +94,18 @@ CREATE TABLE `katakatani` (
   `id` int(10) UNSIGNED NOT NULL,
   `matricule` varchar(255) DEFAULT NULL,
   `acheter_at` datetime DEFAULT NULL,
-  `prix_achat` int(11) NOT NULL
+  `prix_achat` int(11) NOT NULL,
+  `numero` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `katakatani`
 --
 
-INSERT INTO `katakatani` (`id`, `matricule`, `acheter_at`, `prix_achat`) VALUES
-(1, '1979428774482', '2017-06-08 00:00:00', 1185000),
-(2, '4006704009772', '2018-01-27 00:00:00', 1185000),
-(3, '9561664699432', '2018-12-03 00:00:00', 1185000);
+INSERT INTO `katakatani` (`id`, `matricule`, `acheter_at`, `prix_achat`, `numero`) VALUES
+(1, '1979428774482', '2017-06-08 00:00:00', 1185000, 1),
+(2, '4006704009772', '2018-01-27 00:00:00', 1185000, 2),
+(3, '9561664699432', '2018-12-03 00:00:00', 1185000, 3);
 
 -- --------------------------------------------------------
 
@@ -167,7 +174,7 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
