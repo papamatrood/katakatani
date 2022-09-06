@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 05 sep. 2022 à 16:21
+-- Généré le : mar. 06 sep. 2022 à 12:55
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -82,7 +82,10 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (12, 'Recette', 15000, '2022-09-04 00:00:00', NULL, 3),
 (13, 'Recette', 15000, '2022-09-04 00:00:00', NULL, 2),
 (14, 'Dépense', 2000, '2022-09-02 00:00:00', 'Soudure de Tissu (Barre stabilisatrice)', 3),
-(15, 'Dépense', 2500, '2022-09-02 00:00:00', 'Frais de réparation de Sékouba', 3);
+(15, 'Dépense', 2500, '2022-09-02 00:00:00', 'Frais de réparation de Sékouba', 3),
+(16, 'Dépense', 1500, '2022-09-05 00:00:00', 'Soudure pour les besoins de freins.', 3),
+(17, 'Dépense', 2500, '2022-09-05 00:00:00', 'Frein réglage', 3),
+(18, 'Dépense', 2000, '2022-09-05 00:00:00', 'Frais de réparation de Sékouba', 3);
 
 -- --------------------------------------------------------
 
@@ -174,7 +177,7 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
