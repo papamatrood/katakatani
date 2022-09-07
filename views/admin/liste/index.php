@@ -43,11 +43,11 @@ $url   = $router->url('home');
     <caption class="caption-top">Les derniéres activités</caption>
     <thead>
         <tr>
-            <th>Prénom & Nom</th>
-            <th>Motif</th>
-            <th>Montant</th>
-            <th>Détail</th>
-            <th>Date</th>
+            <th style="width:15%">Prénom & Nom</th>
+            <th style="width:10%">Motif</th>
+            <th style="width:12%">Montant</th>
+            <th style="width:51%">Détail</th>
+            <th style="width:12%">Date</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
