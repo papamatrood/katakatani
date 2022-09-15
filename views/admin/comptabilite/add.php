@@ -15,6 +15,8 @@ $errors = [];
  * @var Comptabilite
  */
 $comptabilite = new Comptabilite();
+$comptabilite->setDateAt(date('Y-m-d'));
+
 
 $katakatanis = (new TableChauffeur())->allKatakataniIdName();
 

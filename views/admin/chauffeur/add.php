@@ -15,6 +15,10 @@ $errors = [];
  * @var Chauffeur
  */
 $chauffeur = new Chauffeur();
+$chauffeur
+    ->setDebutAt(date('Y-m-d'))
+    ->setFinAt(date('Y-m-d'));
+    
 
 $katakatanis = (new TableKatakatani())->allIdsNumeros();
 

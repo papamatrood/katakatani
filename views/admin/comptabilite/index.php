@@ -60,7 +60,7 @@ $count = (int) $prepareCount->fetch()[0];
 
 $pages = (int) ceil($count / $limit);
 
-if ($page > $pages) throw new Exception('Cette page n\'existe pas !');
+if (($page > $pages) && ($pages !== 0)) throw new Exception('Cette page n\'existe pas !');
 
 /**
  * @var Chauffeur[]
@@ -74,7 +74,6 @@ $chauffeurs = $pdo->query("SELECT katakatani_id, prenom, nom FROM chauffeur")->f
 $comptabilites = $prepare->fetchAll(PDO::FETCH_CLASS, Comptabilite::class);
 
 $url   = $router->url('home_comptabilite');
-
 ?>
 
 <br>
@@ -175,7 +174,7 @@ $url   = $router->url('home_comptabilite');
                     <td><?= $comptabilite->getNomComplet() ?></td>
                     <td><?= $comptabilite->getMotif() ?></td>
                     <td><?= number_format($comptabilite->getMontant(), '0', '', ' ') ?> FCFA</td>
-                    <td><?= nl2br(htmlentities($comptabilite->getDetails())) ?></td>
+                    <td><?= nl2br(htmlentities($comptabilite->getDetails() ?: '')) ?></td>
                     <td><?= $comptabilite->getDateAt()->format('Y-m-d') ?></td>
                     <td>
                         <a href="<?= $router->url('edit_comptabilite', ['id' => $comptabilite->getId()]) ?>" class="btn btn-primary">Éditer</a>

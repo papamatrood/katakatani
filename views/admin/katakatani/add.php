@@ -14,6 +14,7 @@ $errors = [];
  * @var Katakatani
  */
 $katakatani = new Katakatani();
+$katakatani->setAcheterAt(date('Y-m-d'));
 
 if (!empty($_POST)) {
     $katakatani
