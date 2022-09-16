@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 06 sep. 2022 à 18:16
+-- Généré le : ven. 16 sep. 2022 à 16:50
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -86,7 +86,16 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (16, 'Dépense', 1500, '2022-09-05 00:00:00', 'Soudure pour les besoins de freins.', 3),
 (17, 'Dépense', 2500, '2022-09-05 00:00:00', 'Frein réglage', 3),
 (18, 'Dépense', 2000, '2022-09-05 00:00:00', 'Frais de réparation de Sékouba', 3),
-(19, 'Recette', 10000, '2022-09-05 00:00:00', 'Il a payé l\'arriéré 7500 FCFA de la semaine passée et le 2500 FCFA d\'aujourd\'hui.', 1);
+(19, 'Recette', 10000, '2022-09-05 00:00:00', 'Il a payé l\'arriéré 7500 FCFA de la semaine passée et le 2500 FCFA d\'aujourd\'hui.', 1),
+(20, 'Recette', 5000, '2022-09-07 00:00:00', 'Recette de mardi et mercredi', 1),
+(21, 'Dépense', 2500, '2022-09-10 00:00:00', 'Achat de nouveau chambre à air (2250) et fait de réparation 250', 1),
+(22, 'Dépense', 5000, '2022-09-10 00:00:00', 'Réparation des freins arrières', 1),
+(23, 'Recette', 7500, '2022-09-11 00:00:00', 'Pour jeudi, vendredi et samedi', 1),
+(24, 'Recette', 7500, '2022-09-11 00:00:00', 'Il lui reste 7 500 FCFA à payer', 2),
+(25, 'Recette', 12500, '2022-09-11 00:00:00', 'Il n\'a pas travaillé un jour', 3),
+(26, 'Recette', 5000, '2022-09-13 00:00:00', 'Pour lundi et mardi', 1),
+(27, 'Recette', 2500, '2022-09-14 00:00:00', 'Pour mercredi', 1),
+(28, 'Dépense', 6500, '2022-09-15 00:00:00', 'Réparation du mao vers le pneu.', 1);
 
 -- --------------------------------------------------------
 
@@ -178,13 +187,13 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
 --
 ALTER TABLE `katakatani`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `users`
