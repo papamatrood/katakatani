@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 19 sep. 2022 à 10:18
+-- Généré le : lun. 19 sep. 2022 à 18:36
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -100,7 +100,8 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (30, 'Recette', 5000, '2022-09-16 00:00:00', 'Pour le jeudi et vendredi', 1),
 (31, 'Recette', 2500, '2022-09-18 00:00:00', 'Pour le samedi', 1),
 (32, 'Recette', 15000, '2022-09-19 00:00:00', NULL, 3),
-(33, 'Dépense', 5000, '2022-09-19 00:00:00', 'La police lui a arrêté pour sens interdit vers la grande mosquée à bagadadji. On  les a donné 10 000 FCFA, moi j\'ai donné 5 000 et Abdramane même 5 000', 3);
+(33, 'Dépense', 5000, '2022-09-19 00:00:00', 'La police lui a arrêté pour sens interdit vers la grande mosquée à bagadadji. On  les a donné 10 000 FCFA, moi j\'ai donné 5 000 et Abdramane même 5 000', 3),
+(34, 'Dépense', 7500, '2022-09-19 00:00:00', 'Réparation du bas du bol', 3);
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
