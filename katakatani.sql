@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 21 sep. 2022 à 11:34
+-- Généré le : mer. 28 sep. 2022 à 12:01
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -102,7 +102,13 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (32, 'Recette', 15000, '2022-09-19 00:00:00', NULL, 3),
 (33, 'Dépense', 5000, '2022-09-19 00:00:00', 'La police lui a arrêté pour sens interdit vers la grande mosquée à bagadadji. On  les a donné 10 000 FCFA, moi j\'ai donné 5 000 et Abdramane même 5 000', 3),
 (34, 'Dépense', 7500, '2022-09-19 00:00:00', 'Réparation du bas du bol', 3),
-(35, 'Dépense', 4500, '2022-09-20 00:00:00', '3500 FCFA pour le classeur qui contient les disques et 1000 FCFA pour la réparation', 1);
+(35, 'Dépense', 4500, '2022-09-20 00:00:00', '3500 FCFA pour le classeur qui contient les disques et 1000 FCFA pour la réparation', 1),
+(36, 'Recette', 2500, '2022-09-21 00:00:00', 'Il lui reste 8 000 FCFA', 1),
+(37, 'Recette', 2500, '2022-09-23 00:00:00', 'Il lui reste 5 500 FCFA', 1),
+(38, 'Recette', 15000, '2022-09-24 00:00:00', 'Il lui reste 7 500 FCFA', 2),
+(39, 'Recette', 3000, '2022-09-26 00:00:00', 'Il lui reste 2 500 FCFA', 1),
+(40, 'Recette', 10000, '2022-09-25 00:00:00', NULL, 3),
+(41, 'Recette', 5000, '2022-09-27 00:00:00', 'Le 2 500 FCFA qui lui restait et la recette du lundi 26/09/2022', 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +200,7 @@ ALTER TABLE `chauffeur`
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
