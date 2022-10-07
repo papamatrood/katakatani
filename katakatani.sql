@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 28 sep. 2022 à 12:01
+-- Généré le : ven. 07 oct. 2022 à 11:42
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -46,7 +46,8 @@ CREATE TABLE `chauffeur` (
 INSERT INTO `chauffeur` (`id`, `prenom`, `nom`, `adresse`, `telephone1`, `telephone2`, `debut_at`, `fin_at`, `katakatani_id`) VALUES
 (1, 'Seydou', '(Salia)', 'Namassa dankan', '+223 69 30 17 67', NULL, '2022-08-31 00:00:00', '2022-08-31 00:00:00', 2),
 (2, 'Chaka', '(Chaka)', 'Gouana', '+223 66 33 36 88', '+223 76 67 99 70', '2022-06-15 00:00:00', '2022-08-31 00:00:00', 1),
-(3, 'Abdramane', 'Kodio', 'Torokorobougou', '+223 67 00 07 37', NULL, '2020-01-27 00:00:00', '2022-08-31 00:00:00', 3);
+(3, 'Abdramane', 'Kodio', 'Torokorobougou', '+223 67 00 07 37', NULL, '2020-01-27 00:00:00', '2022-10-02 00:00:00', 3),
+(4, 'Daouda', 'Diarra', 'Sabalibougou', '60664566', NULL, '2022-10-04 00:00:00', '2022-10-04 00:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,18 @@ INSERT INTO `comptabilite` (`id`, `motif`, `montant`, `date_at`, `details`, `kat
 (38, 'Recette', 15000, '2022-09-24 00:00:00', 'Il lui reste 7 500 FCFA', 2),
 (39, 'Recette', 3000, '2022-09-26 00:00:00', 'Il lui reste 2 500 FCFA', 1),
 (40, 'Recette', 10000, '2022-09-25 00:00:00', NULL, 3),
-(41, 'Recette', 5000, '2022-09-27 00:00:00', 'Le 2 500 FCFA qui lui restait et la recette du lundi 26/09/2022', 1);
+(41, 'Recette', 5000, '2022-09-27 00:00:00', 'Le 2 500 FCFA qui lui restait et la recette du lundi 26/09/2022', 1),
+(42, 'Recette', 2500, '2022-09-29 00:00:00', 'Il lui reste 10 000 FCFA', 1),
+(43, 'Recette', 2500, '2022-10-01 00:00:00', 'Il lui reste 7 500 FCFA', 1),
+(44, 'Recette', 5000, '2022-10-03 00:00:00', 'Il lui reste 2 500 FCFA', 1),
+(45, 'Dépense', 5000, '2022-10-03 00:00:00', 'Réparation du deuxième frein arrière', 1),
+(46, 'Recette', 15000, '2022-10-02 00:00:00', NULL, 3),
+(47, 'Recette', 22500, '2022-10-02 00:00:00', 'La recette de la semaine et le 7 500 FCFA restant.', 2),
+(48, 'Dépense', 6500, '2022-09-30 00:00:00', 'Réparation de Frein', 3),
+(49, 'Recette', 5000, '2022-10-05 00:00:00', 'Pour le 2500 FCFA restant et la recette du lundi', 1),
+(50, 'Recette', 2500, '2022-10-04 00:00:00', 'Pour ce mardi', 3),
+(51, 'Recette', 2500, '2022-10-05 00:00:00', 'Pour ce mercredi', 3),
+(52, 'Recette', 5000, '2022-10-06 00:00:00', 'Pour le mardi et mercredi', 1);
 
 -- --------------------------------------------------------
 
@@ -194,13 +206,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `chauffeur`
 --
 ALTER TABLE `chauffeur`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `comptabilite`
 --
 ALTER TABLE `comptabilite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `katakatani`
